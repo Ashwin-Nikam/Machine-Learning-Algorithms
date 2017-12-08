@@ -28,7 +28,12 @@ features_train, features_test, labels_train, labels_test = preprocess()
 ### your code goes here ###
 
 bnb = GaussianNB()
-predicted = bnb.fit(features_train, labels_train).score(features_test, labels_test)
+t0 = time()
+classifier = bnb.fit(features_train, labels_train)
+print "training time:", round(time()-t0, 3), "s"
+t0 = time()
+predicted = classifier.score(features_test, labels_test)
+print "testing time:", round(time()-t0, 3), "s"
 print predicted
 
 #########################################################
