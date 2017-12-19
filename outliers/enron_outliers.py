@@ -10,31 +10,29 @@ import numpy as np
 ### read in data dictionary, convert to numpy array
 data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
 features = ["salary", "bonus"]
+data_dict.pop("TOTAL",0)
 data = featureFormat(data_dict, features)
 
 
 ### your code below
-for point in data:
-    salary = point[0]
-    bonus = point[1]
-    matplotlib.pyplot.scatter( salary, bonus )
+# for point in data:
+#     salary = point[0]
+#     bonus = point[1]
+#     matplotlib.pyplot.scatter( salary, bonus )
 
-matplotlib.pyplot.xlabel("salary")
-matplotlib.pyplot.ylabel("bonus")
-matplotlib.pyplot.show()
+# matplotlib.pyplot.xlabel("salary")
+# matplotlib.pyplot.ylabel("bonus")
+# matplotlib.pyplot.show()
+
+print data
 
 array1 = data[:,0]
 array2 = data[:,1]
-p1 = np.amax(array1)
-p2 = np.amax(array2)
-maxkey = ''
 for key in data_dict.keys():
-	print key
 	new_dict = data_dict[key]
-	if new_dict['salary'] == p1:
+	if new_dict['salary'] != 'NaN' and new_dict['salary'] > 1000000 and new_dict['bonus'] != 'NaN' and new_dict['bonus'] > 5000000:
+		print key
 		print new_dict
-		maxkey = key
-		break
 
-print p1
-print maxkey
+# print p1
+# print maxkey
