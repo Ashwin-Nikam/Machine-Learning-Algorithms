@@ -52,19 +52,24 @@ feature_3 = "total_payments"
 poi  = "poi"
 features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
+
+import numpy as np
+
+salary_col = data[:,1]
+stock_col = data[:,2]
+max1 = np.amax(salary_col)
+min1 = np.amin(salary_col)
+max2 = np.amax(stock_col)
+min2 = np.amin(stock_col)
+
+print (200000. - min1)/(max1 - min1)
+print (1000000. - min2)/(max2 - min2)
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+data = scaler.fit_transform(data)
+
 poi, finance_features = targetFeatureSplit( data )
-
-max = float('-inf')
-min = float('inf')
-for key in data_dict.keys():
-	if data_dict[key][feature_1] == "NaN":
-		continue
-	if data_dict[key][feature_1] > max:
-		max = data_dict[key][feature_1]
-	elif data_dict[key][feature_1] < min:
-		min = data_dict[key][feature_1]
-
-print max," ",min
 
 ### in the "clustering with 3 features" part of the mini-project,
 ### you'll want to change this line to 
